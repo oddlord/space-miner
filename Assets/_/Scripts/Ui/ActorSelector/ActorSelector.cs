@@ -1,39 +1,35 @@
 using System;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace SpaceMiner
 {
-    public class ActorSelector : MonoBehaviour
+    public class ActorSelector : SerializedMonoBehaviour
     {
-        [Serializable]
-        private struct _ActorSelectionEntry
-        {
-            public Sprite Sprite;
-            public Actor Prefab;
-        }
-
         [Serializable]
         private struct _InternalSetup
         {
             public Transform ActorEntriesContainer;
         }
 
-        [SerializeField] ActorEntry _actorEntryPrefab;
-        [SerializeField] _ActorSelectionEntry[] _actors;
+        [SerializeField] private ActorEntry _actorEntryPrefab;
+        [OdinSerialize] private List<IActor> _actors;
 
         [Header("__Internal Setup__")]
         [SerializeField] private _InternalSetup _internalSetup;
 
-        private Action<Actor> _onSelected;
+        private Action<IActor> _onSelected;
 
-        public void Show(Action<Actor> onSelected)
+        public void Show(Action<IActor> onSelected)
         {
             gameObject.SetActive(true);
             _onSelected = onSelected;
-            foreach (_ActorSelectionEntry shipSelectionEntry in _actors)
+            foreach (IActor actor in _actors)
             {
                 ActorEntry shipEntry = Instantiate(_actorEntryPrefab, _internalSetup.ActorEntriesContainer);
-                shipEntry.Initialize(shipSelectionEntry.Sprite, () => OnActorSelected(shipSelectionEntry.Prefab));
+                shipEntry.Initialize(actor.GetSprite(), () => OnActorSelected(actor));
             }
         }
 
@@ -42,7 +38,7 @@ namespace SpaceMiner
             gameObject.SetActive(false);
         }
 
-        private void OnActorSelected(Actor actorPrefab)
+        private void OnActorSelected(IActor actorPrefab)
         {
             _onSelected(actorPrefab);
         }

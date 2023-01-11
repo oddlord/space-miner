@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 979662059712833391}
   - {fileID: 1668465259428944969}
@@ -52,18 +53,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48f339768aad4dc1a58fd0e8fafd243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2113509039234838645, guid: 15414c88e8e5b42f3be260df1feaefb7, type: 3}
+    - {fileID: 5995578377934191249, guid: 7c5f73677f579437ba8e8cbf5daadf2e, type: 3}
+    - {fileID: 8625290076574385079, guid: 495ba0d6b05a0442ea1484fef06d1a41, type: 3}
+    - {fileID: 5021503705253294668, guid: 9a4015ca81c07462fba737bb93678f84, type: 3}
+    - {fileID: 5074849368571688913, guid: 7f1c378eeca4e47859e4f2c58c9d3d7d, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _actors
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[SpaceMiner.Actor, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   _actorEntryPrefab: {fileID: 6326301705323014228, guid: f6c906d6dff5a43dd827800615f91264, type: 3}
-  _actors:
-  - Sprite: {fileID: 4958473694988434409, guid: 2c1110eb0533849b1828717cda977b82, type: 3}
-    Prefab: {fileID: 2113509039234838645, guid: 15414c88e8e5b42f3be260df1feaefb7, type: 3}
-  - Sprite: {fileID: 1132206095249792208, guid: 2c1110eb0533849b1828717cda977b82, type: 3}
-    Prefab: {fileID: 5995578377934191249, guid: 02783be092c9d45e48d3a1c8620df2bf, type: 3}
-  - Sprite: {fileID: -5481986502742383148, guid: 2c1110eb0533849b1828717cda977b82, type: 3}
-    Prefab: {fileID: 8625290076574385079, guid: 1b013fa94d1bb47d9ac0a53333d0d1ec, type: 3}
-  - Sprite: {fileID: -7396095203662698337, guid: 2c1110eb0533849b1828717cda977b82, type: 3}
-    Prefab: {fileID: 5021503705253294668, guid: 9a4015ca81c07462fba737bb93678f84, type: 3}
-  - Sprite: {fileID: 4958709792872695805, guid: 2c1110eb0533849b1828717cda977b82, type: 3}
-    Prefab: {fileID: 5074849368571688913, guid: b47efe5fec8874211959687029ff8143, type: 3}
   _internalSetup:
     ActorEntriesContainer: {fileID: 1668465259428944969}
 --- !u!222 &979662058362919738
@@ -133,6 +165,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 979662058362919736}
   m_RootOrder: 0
@@ -277,7 +310,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
   references:
-    version: 1
+    version: 2
+    RefIds: []
 --- !u!1 &8787170052037107133
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +339,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 979662058362919736}
   m_RootOrder: 1

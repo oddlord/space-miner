@@ -2031,87 +2031,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActorSelector
       objectReference: {fileID: 0}
-    - target: {fileID: 979662058362919743, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842420168298870154, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842420168298870154, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842420168298870154, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842420168298870154, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819583260764439724, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819583260764439724, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819583260764439724, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819583260764439724, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7130090354589846200, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7130090354589846200, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7130090354589846200, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7130090354589846200, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698425527969999980, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698425527969999980, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698425527969999980, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698425527969999980, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2721118817373419752, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2721118817373419752, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
---- !u!114 &979662057979672053 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2721118817373419752, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
-  m_PrefabInstance: {fileID: 979662057979672052}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e48f339768aad4dc1a58fd0e8fafd243, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1327638978977002591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2318,6 +2243,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18269f8c1b75941199a14d234d8ac04a, type: 3}
+--- !u!114 &2907968932119973148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2721118817373419752, guid: 2e831a4293a34427d93397bb8cc7e937, type: 3}
+  m_PrefabInstance: {fileID: 979662057979672052}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48f339768aad4dc1a58fd0e8fafd243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3479010953975094670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2412,7 +2348,7 @@ PrefabInstance:
     - target: {fileID: 6303072558952165465, guid: c50590f663d494767840807355c44263, type: 3}
       propertyPath: _actorSelector
       value: 
-      objectReference: {fileID: 979662057979672053}
+      objectReference: {fileID: 2907968932119973148}
     - target: {fileID: 6303072558952165465, guid: c50590f663d494767840807355c44263, type: 3}
       propertyPath: _maxLivesState
       value: 

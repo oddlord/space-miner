@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SpaceMiner
 {
     // TODO this class is too big, split into multiple sub-components
-    public class Spaceship : Actor
+    public class Spaceship : MonoBehaviour, IActor
     {
         [Serializable]
         private struct _InternalSetup
@@ -18,6 +18,9 @@ namespace SpaceMiner
         }
 
         private const float _MAX_SPEED_MULTIPLIER = 0.001f;
+
+        [Header("Lives Parameters")]
+        [SerializeField] private int _initialMaxLives = 3;
 
         [Header("Movement Parameters")]
         [SerializeField] private float _maxSpeed = 100;
@@ -41,13 +44,22 @@ namespace SpaceMiner
         [Header("__Internal Setup__")]
         [SerializeField] private _InternalSetup _internalSetup;
 
+        public ObservableInt Lives { get; set; }
+        public ObservableInt MaxLives { get; set; }
+
+        public Action<IActor> OnDeath { get; set; }
+
         private float _speed;
         private DateTime _lastShot;
         private Coroutine _invulnerabilityCoroutine;
 
-        public override void Awake()
+        void Awake()
         {
-            base.Awake();
+            Lives = new ObservableInt(_initialMaxLives);
+            MaxLives = new ObservableInt(_initialMaxLives);
+
+            Lives.OnChange += HandleLivesChanged;
+
             _lastShot = DateTime.MinValue;
         }
 
@@ -57,9 +69,9 @@ namespace SpaceMiner
             transform.position += translation;
         }
 
-        public override void HandleForwardInput(float amount)
+        public void HandleForwardInput(float amount)
         {
-            if (IsDead) amount = 0;
+            if (_asActor.IsDead) amount = 0;
 
             amount = Mathf.Max(0, amount);
             float targetSpeed = amount * _maxSpeed;
@@ -69,9 +81,9 @@ namespace SpaceMiner
             _speed = Mathf.MoveTowards(_speed, targetSpeed, acceleration);
         }
 
-        public override void HandleSideInput(float amount)
+        public void HandleSideInput(float amount)
         {
-            if (IsDead) return;
+            if (_asActor.IsDead) return;
             if (amount == 0) return;
 
             float zRotation = -amount * _rotationSpeed;
@@ -79,9 +91,9 @@ namespace SpaceMiner
             transform.rotation *= rotation;
         }
 
-        public override void Attack()
+        public void Attack()
         {
-            if (IsDead) return;
+            if (_asActor.IsDead) return;
 
             TimeSpan timeSinceLastShot = DateTime.Now - _lastShot;
             float secondsPerShot = 1f / _fireRate;
@@ -94,19 +106,25 @@ namespace SpaceMiner
             _lastShot = DateTime.Now;
         }
 
-        protected override void OnHit()
+        public Sprite GetSprite() => _internalSetup.SpriteRenderer.sprite;
+
+        public GameObject GetObject() => gameObject;
+
+        private IActor _asActor => (IActor)this;
+
+        private void OnHit()
         {
-            if (IsDead) return;
+            if (_asActor.IsDead) return;
             PlayAudio(_hitSound);
             Lives.Subtract(1);
         }
 
-        protected override void OnLivesChanged(int newValue, int delta)
+        private void OnLivesChanged(int newValue, int delta)
         {
             if (delta > 0) return;
 
             SetColliderEnabled(false);
-            if (!IsDead)
+            if (!_asActor.IsDead)
             {
                 if (_invulnerabilityCoroutine != null) StopCoroutine(_invulnerabilityCoroutine);
                 _invulnerabilityCoroutine = StartCoroutine(InvulnerabilityCoroutine());
@@ -154,6 +172,22 @@ namespace SpaceMiner
         {
             _internalSetup.AudioSource.clip = clip;
             _internalSetup.AudioSource.Play();
+        }
+
+        private void HandleLivesChanged(int newValue, int delta)
+        {
+            OnLivesChanged(newValue, delta);
+            if (_asActor.IsDead) OnDeath?.Invoke(this);
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag(Tags.OBSTACLE)) OnHit();
+        }
+
+        void OnDestroy()
+        {
+            Lives.OnChange -= HandleLivesChanged;
         }
     }
 }
