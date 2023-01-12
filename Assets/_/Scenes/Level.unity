@@ -512,8 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bec3987afbf14e7098734dafdfc31ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveObstaclePrefabs:
-  - {fileID: 4978597233783689588, guid: 4d4c0d5bef1c446e18d0466492437f6e, type: 3}
+  _waveObstacleCollection: {fileID: 11400000, guid: d7fa7fcf2260b4ab3bc0f4a9bc54aa1f, type: 2}
   _spawnPointsContainer: {fileID: 3479010953975094671}
   _livesDisplay: {fileID: 426965693}
 --- !u!114 &630626551

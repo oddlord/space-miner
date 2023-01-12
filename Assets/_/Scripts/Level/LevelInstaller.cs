@@ -7,7 +7,7 @@ namespace SpaceMiner
     public class LevelInstaller : MonoInstaller
     {
         [Header("Instances")]
-        [SerializeField] private List<Obstacle> _waveObstaclePrefabs;
+        [SerializeField] private WaveObstacleCollection _waveObstacleCollection;
         [SerializeField] private SpawnPointsContainer _spawnPointsContainer;
         [SerializeField] private LivesDisplay _livesDisplay;
 
@@ -23,7 +23,7 @@ namespace SpaceMiner
 
             Container.Bind<ObservableInt>().AsSingle();
 
-            Container.BindInstance(_waveObstaclePrefabs);
+            Container.BindInstance(_waveObstacleCollection);
             Container.BindInstance(_spawnPointsContainer);
             Container.BindInstance(_livesDisplay);
         }

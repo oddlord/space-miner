@@ -10,14 +10,14 @@ namespace SpaceMiner
         public Action<Obstacle> OnObstacleSpawned { get; set; }
 
         private Obstacle.Factory _obstacleFactory;
-        private List<Obstacle> _waveObstaclePrefabs;
+        private WaveObstacleCollection _waveObstacleCollection;
         private SpawnPointsContainer _spawnPointsContainer;
 
         [Inject]
-        public void Init(Obstacle.Factory obstacleFactory, List<Obstacle> waveObstaclePrefabs, SpawnPointsContainer spawnPointsContainer)
+        public void Init(Obstacle.Factory obstacleFactory, WaveObstacleCollection waveObstacleCollection, SpawnPointsContainer spawnPointsContainer)
         {
             _obstacleFactory = obstacleFactory;
-            _waveObstaclePrefabs = waveObstaclePrefabs;
+            _waveObstacleCollection = waveObstacleCollection;
             _spawnPointsContainer = spawnPointsContainer;
         }
 
@@ -28,7 +28,7 @@ namespace SpaceMiner
             Obstacle[] obstacles = new Obstacle[amount];
             for (int i = 0; i < amount; i++)
             {
-                Obstacle obstaclePrefab = Utils.GetRandomListElement(_waveObstaclePrefabs);
+                Obstacle obstaclePrefab = Utils.GetRandomListElement(_waveObstacleCollection.Prefabs);
                 SpawnPoint spawnPoint = spawnPoints[i % spawnPoints.Length];
                 Obstacle obstacle = SpawnObstacle(obstaclePrefab, spawnPoint.Position);
                 obstacles[i] = obstacle;
@@ -40,8 +40,8 @@ namespace SpaceMiner
         public Obstacle SpawnObstacle(Obstacle obstaclePrefab, Vector3 spawnPosition)
         {
             Quaternion spawnRotation = Utils.GetRandom2DRotation();
-            Obstacle obstacle = _obstacleFactory.Create(obstaclePrefab);
-            obstacle.transform.SetPositionAndRotation(spawnPosition, spawnRotation);
+            Obstacle obstacle = _obstacleFactory.Create(obstaclePrefab.GetObject());
+            obstacle.GetObject().transform.SetPositionAndRotation(spawnPosition, spawnRotation);
             OnObstacleSpawned?.Invoke(obstacle);
             return obstacle;
         }
