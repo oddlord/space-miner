@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507773506999901454}
   - component: {fileID: 507773506999901453}
+  - component: {fileID: 6499503839677961330}
   - component: {fileID: 3253870787426686338}
   - component: {fileID: 5621934142258081306}
   - component: {fileID: 1471347598928713024}
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7515de789944040acf32c4f7aaf680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointsWorth: 1
+  Target: {fileID: 6499503839677961330}
   Hittable: {fileID: 3253870787426686338}
   _destructionSound: {fileID: 8300000, guid: 3a09d606b622940b7be4a8aaccd9bdd3, type: 3}
   _internalSetup:
@@ -61,6 +62,20 @@ MonoBehaviour:
   SplitOnHit: 0
   FragmentPrefab: {fileID: 0}
   FragmentsToSpawn: 2
+--- !u!114 &6499503839677961330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507773506999901455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e98cea894f1456fb520ba6e7ce5ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointsWorth: 1
+  Hittable: {fileID: 3253870787426686338}
 --- !u!114 &3253870787426686338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babbc878061c54d5ca055fd38d40ccdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitTags: []
 --- !u!114 &5621934142258081306
 MonoBehaviour:
   m_ObjectHideFlags: 0

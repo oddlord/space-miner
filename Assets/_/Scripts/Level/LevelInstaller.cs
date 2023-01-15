@@ -10,6 +10,7 @@ namespace SpaceMiner
     {
         [Header("Instances")]
         [SerializeField] private Target[] _waveTargetPrefabs;
+        [SerializeField] private Target _specialTargetPrefab;
         [SerializeField] private SpawnPointsContainer _spawnPointsContainer;
         [SerializeField] private LivesDisplay _livesDisplay;
 
@@ -26,6 +27,7 @@ namespace SpaceMiner
             Container.Bind<ObservableInt>().AsSingle();
 
             Container.BindInstance(_waveTargetPrefabs);
+            Container.BindInstance(_specialTargetPrefab);
             Container.BindInstance(_spawnPointsContainer);
             Container.BindInstance(_livesDisplay);
         }

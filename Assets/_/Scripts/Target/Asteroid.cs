@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace SpaceMiner
 {
-    public class Asteroid : Target
+    public class Asteroid : MonoBehaviour
     {
         [Serializable]
         private struct _InternalSetup
@@ -19,6 +19,9 @@ namespace SpaceMiner
             public AudioSource AudioSource;
         }
 
+        public Target Target;
+        public Hittable Hittable;
+
         [Header("Audio")]
         [SerializeField] private AudioClip _destructionSound;
 
@@ -27,7 +30,7 @@ namespace SpaceMiner
 
         [Header("Asteroid Configuration")]
         [HideInInspector] public bool SplitOnHit;
-        [HideInInspector] public Target FragmentPrefab;
+        [HideInInspector] public Asteroid FragmentPrefab;
         [HideInInspector] public int FragmentsToSpawn = 2;
 
         private ITargetSpawner _targetSpawner;
@@ -38,19 +41,24 @@ namespace SpaceMiner
             _targetSpawner = targetSpawner;
         }
 
-        protected override void OnHit()
+        void Awake()
+        {
+            Hittable.OnHit += OnHit;
+        }
+
+        private void OnHit()
         {
             if (SplitOnHit)
             {
                 for (int i = 0; i < FragmentsToSpawn; i++)
-                    _targetSpawner.SpawnTarget(FragmentPrefab, transform.position);
+                    _targetSpawner.SpawnTarget(FragmentPrefab.Target, transform.position);
             }
 
             PlayAudio(_destructionSound);
             SetColliderEnabled(false);
             SetSpriteAlpha(0);
             StartCoroutine(DestructionCoroutine(_destructionSound.length));
-            OnDestroyed?.Invoke(this);
+            Target.SetDestroyed();
         }
 
         private IEnumerator DestructionCoroutine(float delay)
@@ -76,22 +84,23 @@ namespace SpaceMiner
             _internalSetup.AudioSource.clip = clip;
             _internalSetup.AudioSource.Play();
         }
+
+        void OnDestroy()
+        {
+            Hittable.OnHit -= OnHit;
+        }
     }
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(Asteroid))]
     public class Asteroid_Editor : Editor
     {
-        private Asteroid _asteroid;
-
         private SerializedProperty _splitOnHit;
         private SerializedProperty _fragmentPrefab;
         private SerializedProperty _fragmentsToSpawn;
 
         void OnEnable()
         {
-            _asteroid = (Asteroid)target;
-
             _splitOnHit = this.serializedObject.FindProperty("SplitOnHit");
             _fragmentPrefab = this.serializedObject.FindProperty("FragmentPrefab");
             _fragmentsToSpawn = this.serializedObject.FindProperty("FragmentsToSpawn");

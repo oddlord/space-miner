@@ -4,19 +4,20 @@ using Zenject;
 
 namespace SpaceMiner
 {
-    public abstract class Target : MonoBehaviour
+    public class Target : MonoBehaviour
     {
         public class Factory : PlaceholderFactory<UnityEngine.Object, Target> { }
 
-        public int PointsWorth;
+        public bool Active = true;
 
+        public int PointsWorth;
         public Hittable Hittable;
 
         public Action<Target> OnDestroyed;
 
-        protected virtual void Awake()
+        public void SetActive(bool active)
         {
-            Hittable.OnHit += OnHit;
+            Active = active;
         }
 
         public virtual void SetTag(string tag)
@@ -24,11 +25,10 @@ namespace SpaceMiner
             gameObject.tag = tag;
         }
 
-        protected abstract void OnHit();
-
-        protected virtual void OnDestroy()
+        public void SetDestroyed()
         {
-            Hittable.OnHit -= OnHit;
+            if (!Active) return;
+            OnDestroyed?.Invoke(this);
         }
     }
 }

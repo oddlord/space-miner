@@ -10,11 +10,6 @@ namespace SpaceMiner
 
         public string[] HitTags;
 
-        public void SetActive(bool active)
-        {
-            gameObject.SetActive(active);
-        }
-
         void OnTriggerEnter2D(Collider2D other)
         {
             if (HitTags == null) return;
